@@ -238,6 +238,13 @@ function buildPdf() {
 
 function toMarkdown() {
   const td = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced', emDelimiter: '*' });
+  td.addRule('figcaption', {
+    filter: 'figcaption',
+    replacement: (c) => {
+      const t = c.trim().replace(/^[*_]+|[*_]+$/g, '').trim();
+      return t ? `\n\n*Caption: ${t}*\n\n` : '';
+    },
+  });
   td.addRule('img', {
     filter: 'img',
     replacement: (_, n) => `![${n.getAttribute('alt') || ''}](${n.getAttribute('data-orig') || n.getAttribute('src')})`,
