@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { handlePost, handleImage } from './lib/proxy.mjs';
+import { handlePost, handleImage, handleMarkdown, urlFromMdPath } from './lib/proxy.mjs';
 
 // Locally, serve the same /api/* routes the Netlify functions serve in prod.
 async function send(res, response) {
@@ -15,6 +15,8 @@ const devApi = {
       const u = new URL(req.url, 'http://localhost');
       try {
         if (u.pathname === '/api/post') return await send(res, await handlePost(u.searchParams.get('url')));
+        if (u.pathname === '/md' || u.pathname.startsWith('/md/') || u.pathname === '/api/md')
+          return await send(res, await handleMarkdown(urlFromMdPath('http://localhost' + req.url)));
         if (u.pathname === '/api/img') return await send(res, await handleImage(u.searchParams.get('u')));
       } catch (e) {
         res.statusCode = 500;

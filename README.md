@@ -4,6 +4,12 @@ Paste a Substack post URL and download it as a PDF (text formatting, images, foo
 
 Works with `*.substack.com`, custom domains (e.g. `contraptions.venkateshrao.com/p/...`), `open.substack.com/pub/...` and `substack.com/@user/p-123` links. You can deep-link with `?post=<url>`. Paywalled posts only include the free preview.
 
+## For agents
+
+- `GET /md/<post url>` (or `/api/md?url=<encoded url>`) returns the post as `text/markdown`. It needs no JS, so a plain fetch tool works.
+- `GET /api/post?url=<encoded url>` returns JSON.
+- `/llms.txt` documents both. The homepage HTML also mentions them, so an agent that only fetches `/` can find them.
+
 ## How it works
 
 - `lib/proxy.mjs` reads the post from Substack's public JSON API (`/api/v1/posts/<slug>`) and proxies images. Substack sends no CORS headers, so the browser can't call either one directly.

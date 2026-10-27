@@ -136,6 +136,7 @@ function headerHtml(m) {
 // ---------- main load ----------
 
 async function load(url) {
+  url = url.trim();
   actions.hidden = true;
   article.innerHTML = '';
   post = null;
@@ -169,6 +170,8 @@ async function load(url) {
   const notes = [];
   if (meta.truncated) notes.push('paywalled: only the free preview is available');
   if (failed) notes.push(`${failed} image(s) failed`);
+  $('#md-link').href = '/md/' + url;
+  $('#md-link').textContent = location.origin + '/md/' + url;
   setStatus(`Ready: “${meta.title}”, ${meta.wordcount?.toLocaleString() ?? '?'} words, ${imgs.length - failed} images` +
     (notes.length ? ` (${notes.join('; ')})` : '') + '.', notes.length ? 'warn' : 'ok');
 }

@@ -1,0 +1,13 @@
+# Substack to PDF
+
+> Fetches a Substack post and returns it as clean Markdown (or PDF/HTML via the web UI). Use it when a Substack page blocks your fetch tool.
+
+## For agents: get a post as Markdown in one GET
+
+- `GET /md/<substack post URL>` returns `text/markdown`. Example: `/md/https://contraptions.venkateshrao.com/p/cognitive-mercantilism`
+- `GET /api/md?url=<url-encoded post URL>` does the same, if your tool mangles paths.
+- `GET /api/post?url=<url-encoded post URL>` returns JSON: title, subtitle, authors, date, url, wordcount, truncated, body_html.
+
+Accepted links: `*.substack.com/p/<slug>`, custom-domain Substacks (`example.com/p/<slug>`), `open.substack.com/pub/<pub>/p/<slug>`, `substack.com/@user/p-<id>`, `substack.com/home/post/p-<id>`. The scheme is optional.
+
+The Markdown has a header (title, subtitle, author, date, canonical URL). Images become `![alt](url)` links, and footnotes become `[^n]` with definitions at the end. Errors come back as plain text with a 4xx/5xx status (e.g. 403 for a paywalled post with no free preview). If a post is paywalled but has a preview, the output says so at the top.

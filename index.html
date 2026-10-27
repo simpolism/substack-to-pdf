@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Substack to PDF</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Instructions for LLM agents">
+  <meta name="description" content="Convert a Substack post to PDF or Markdown. Agents: GET /md/<substack post url> returns the post as text/markdown. See /llms.txt.">
   <script type="module" src="app.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,6 +28,7 @@
     #actions[hidden] { display: none; }
     .preview { padding: 40px; }
     .hint { font-size: 13px; color: #888; margin-top: 10px; }
+    .hint code { background: #eee; padding: 0 3px; font-size: 12px; }
     .footer { padding: 20px 40px; border-top: 1px solid #eee; font-size: 13px; color: #888; }
     .footer a { color: #888; }
     @media print {
@@ -73,7 +76,9 @@
         <button id="copy-md" class="secondary">Copy Markdown</button>
         <button id="dl-html" class="secondary">Download HTML</button>
         <button id="print" class="secondary">Print…</button>
+        <p class="hint" style="width:100%">Link to give an agent: <a id="md-link" href="#"></a></p>
       </div>
+      <p class="hint agent-note"><strong>AI agents / scripts:</strong> fetch <code>/md/&lt;substack post url&gt;</code> (e.g. <code>/md/https://example.substack.com/p/some-post</code>) to get the post as plain Markdown, no JavaScript needed. JSON is at <code>/api/post?url=…</code>. Details: <a href="/llms.txt">/llms.txt</a>.</p>
       <p class="hint">Works with *.substack.com, custom-domain Substacks, and substack.com/@user/p-123 links. Paywalled posts only include the free preview.</p>
     </div>
     <div class="preview"><article id="article" class="article"></article></div>
