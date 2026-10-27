@@ -1,0 +1,25 @@
+{
+  "name": "substack-to-pdf",
+  "version": "1.0.0",
+  "description": "Fetch a Substack post and download it as PDF/Markdown/HTML",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "html-to-pdfmake": "^2.5.36",
+    "pdfmake": "^0.2.23",
+    "turndown": "^7.2.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  },
+  "type": "module"
+}
