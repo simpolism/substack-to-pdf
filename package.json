@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "simpolism",
+  "license": "MIT",
   "dependencies": {
     "html-to-pdfmake": "^2.5.36",
     "pdfmake": "^0.2.23",

@@ -16,6 +16,10 @@ Works with `*.substack.com`, custom domains (e.g. `contraptions.venkateshrao.com
 - In production those routes are served by Netlify Functions (`netlify/functions/`). Locally, a Vite middleware (`vite.config.mjs`) serves the same `/api/post` and `/api/img` routes.
 - `app.js` cleans Substack's HTML (drops buttons and subscribe widgets, unwraps images, turns footnotes into superscripts plus a Notes section) and inlines images as JPEG data URLs. It then builds the PDF client-side with pdfmake + html-to-pdfmake. Markdown comes from turndown, with images left as links.
 
+## License
+
+MIT
+
 ## Run locally
 
     npm install
